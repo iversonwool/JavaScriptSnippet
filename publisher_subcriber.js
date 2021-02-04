@@ -10,6 +10,15 @@ class Notification {
       this.eventCenter[name] = []
     }
     this.eventCenter[name].push(handler)
+
+    /**
+     * inspired by 'redux'
+     * https://github.com/reduxjs/redux/blob/4.x/src/createStore.js
+     * subscribe function
+     */
+    return () => {
+      this.eventCenter[name].splice(this.eventCenter[name].indexOf(handler) >>> 0, 1)
+    }
   }
 
   emit(name, msg) {
@@ -20,11 +29,11 @@ class Notification {
     }
   }
 
-  off(name, handle) {
-    if (this.eventCenter[name]) {
-      this.eventCenter[name].splice(this.eventCenter[name].indexOf(handle) >>> 0, 1)
-    }
-  }
+  // off(name, handle) {
+  //   if (this.eventCenter[name]) {
+  //     this.eventCenter[name].splice(this.eventCenter[name].indexOf(handle) >>> 0, 1)
+  //   }
+  // }
 }
 
 const handler = (msg) => {
@@ -37,9 +46,10 @@ const handler1 = (msg) => {
 
 const noti = new Notification()
 noti.on('hello', handler)
-noti.on('hello', handler1)
+const off1 = noti.on('hello', handler1)
 
 noti.emit('hello', 'world')
 
-noti.off('hello', handler)
+// noti.off('hello', handler)
+off1()
 noti.emit('hello', 'world')
