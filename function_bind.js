@@ -15,6 +15,10 @@ const obj  = {
   y: 2
 }
 
+const c = {
+  a: 1
+}
+
 
 // const func = add.bind(obj, 3)
 
@@ -22,3 +26,7 @@ obj.z = add.bind(null)
 
 
 console.log(obj.z(9, 9))
+
+const bindMinus = obj.z.bind(c)
+const result =bindMinus(4, 0);
+console.log('bind test', result)
