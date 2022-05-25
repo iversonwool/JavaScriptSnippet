@@ -31,6 +31,9 @@ const generateList = data => {
   for (let i = 0; i < data.length; i++) {
     const node = data[i];
     const { key } = node;
+    /**
+     *  扁平化key title 方便做搜索
+     */
     dataList.push({ key, title: key });
     if (node.children) {
       generateList(node.children);
@@ -53,3 +56,18 @@ const getParentKey = (key, tree) => {
   }
   return parentKey;
 };
+
+/**
+ * 搜索所有key
+ */
+
+
+// value 是搜索关键字
+const expandedKeys = dataList
+  .map(item => {
+    if (item.title.indexOf(value) > -1) {
+      return getParentKey(item.key, gData);
+    }
+    return null;
+  })
+  .filter((item, i, self) => item && self.indexOf(item) === i);
