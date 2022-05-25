@@ -71,3 +71,11 @@ function flatten6 (array){
 
 console.log(flatten6(testArray));
 console.log('666666666666666')
+
+
+let myA = []
+for (let i = 1; i <= 50; i++) {
+  myA[i-1] = i
+  myA[99-i] = i
+}
+console.log(myA)
