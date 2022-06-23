@@ -34,4 +34,41 @@ async function func2() {
   const value = await func1('hello world!')
   console.log('value is ', value)
 }
+
 func2()
+
+
+const p = () => new Promise((r, j) => {
+  let a = 1;
+  let b = 3;
+  if (a - b) {
+    j(false)
+  } else {
+    r(true)
+  }
+})
+
+
+function testError() {
+  //
+  // try {
+  //   const r = await p()
+  // } catch (e) {
+  //   console.log('-e-', e)
+  // }
+
+
+  p()
+    .then((r) => {
+      console.log('r', r)
+    })
+    .catch((e) => {
+      console.log('e', e)
+    })
+}
+
+
+testError()
+
+
+// https://es6.ruanyifeng.com/#docs/async#%E8%AF%AD%E6%B3%95
