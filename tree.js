@@ -160,6 +160,18 @@ tree.forEach(function (item) {
 });
 console.log(res);
 
+function getNodeByKey(id, tree) {
+  for (const node of tree) {
+    if (node.id === id) return node
+    if (node.children) {
+      const found = getNodeByKey(id, node.children)
+      if (found) return found
+    }
+  }
+
+}
+
+console.log('getNode by key', getNodeByKey(7, tree))
 
 function getBrotherNodes(list, id) {
   for(let i in list) {
@@ -174,7 +186,7 @@ function getBrotherNodes(list, id) {
 }
 
 const sibling = getBrotherNodes(tree, 4)
-console.log('sibling', sibling)
+// console.log('sibling', sibling)
 
 
 
@@ -218,7 +230,7 @@ function getChildrenNodes(list, id, arr = []) {
       }
     }
   }
-  console.log('arr', arr)
+  // console.log('arr', arr)
   return arr.filter(v => v.id !== id)
 }
 
@@ -231,7 +243,7 @@ function getDirectChildren(list, arr) {
   })
 }
 
-console.log('-', getChildrenNodes(tree, 4))
+// console.log('-', getChildrenNodes(tree, 4))
 
 
 function findDirectChildren(tree = [], id, arr = []) {
@@ -247,4 +259,27 @@ function findDirectChildren(tree = [], id, arr = []) {
 }
 
 const directR = findDirectChildren(tree, 4)
-console.log('directR', directR)
+// console.log('directR', directR)
+
+/**
+ * flat array to a tree
+ * @param arr
+ * @returns {*[]}
+ */
+const listToTree = (arr = []) => {
+  let map = {}, node, res = [], i;
+  for (i = 0; i < arr.length; i += 1) {
+    map[arr[i].id] = i;
+    arr[i].children = [];
+  };
+  for (i = 0; i < arr.length; i += 1) {
+    node = arr[i];
+    if (node.parentId !== "0") {
+      arr[map[node.parentId]].children.push(node);
+    }
+    else {
+      res.push(node);
+    };
+  };
+  return res;
+};
