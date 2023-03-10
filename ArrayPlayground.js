@@ -79,3 +79,14 @@ for (let i = 1; i <= 50; i++) {
   myA[99-i] = i
 }
 console.log(myA)
+
+
+const a = [1, 2, 3, 4]
+const b = ['a', 'b', 'c', 'd', 'e']
+const c = ['p', 'q']
+const result = Array.from(a, s1 => Array.from(b, s2=> [s1, s2]))
+console.log('result', result)
+
+function ga(a) {
+
+}

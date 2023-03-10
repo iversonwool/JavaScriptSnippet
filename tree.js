@@ -168,7 +168,6 @@ function getNodeByKey(id, tree) {
       if (found) return found
     }
   }
-
 }
 
 console.log('getNode by key', getNodeByKey(7, tree))
