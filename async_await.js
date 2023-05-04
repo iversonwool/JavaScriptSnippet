@@ -72,3 +72,30 @@ testError()
 
 
 // https://es6.ruanyifeng.com/#docs/async#%E8%AF%AD%E6%B3%95
+const errorCodes = [401, 200]
+
+const dataS = [0, 1, 2, 3]
+let index = 0;
+
+function foo(error) {
+  return new Promise(async (resolve) => {
+    if (error === 401) {
+      console.log('executor-before resolve')
+      resolve(await foo(200))
+      console.log('executor-after resolve')
+
+    } else if (error === 200) {
+      resolve(dataS[index])
+    }
+
+    index += 1
+    console.log('foo, index', index)
+  })
+}
+
+async function test() {
+  let a = await foo(401)
+  console.log('test', a)
+}
+
+test()
