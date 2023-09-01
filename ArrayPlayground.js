@@ -90,3 +90,23 @@ console.log('result', result)
 function ga(a) {
 
 }
+
+const a1 = [1, 4, 9, 10]
+const b1 = a1.map(e => [e])
+let x = a1[0]
+let i = 0
+function gap(start, end) {
+  const result = [];
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+  return result;
+}
+const c1 = 1
+while (i < a1.length) {
+  if (a1[i+1] -x >= 2) {
+    b1[i] = b1[i].concat(gap(a1[i]+1, a1[i+1]))
+  }
+  i+=1
+}
+console.log('results', b1)
