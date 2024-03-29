@@ -44,8 +44,8 @@ Some snippets about JavaScript.
   
   ```
 * Node环境
-    ```js
-    	while (tasksAreWaiting()) {
+  ```js
+  	while (tasksAreWaiting()) {
 		queue = getNextQueue()
     		while (queue.hasTasks())
     			task = queue.pop()
@@ -55,5 +55,5 @@ Some snippets about JavaScript.
     		while (promiseQueue.hasTasks())
     			doPromiseTask()
     	}
-    ```
+  ```
 
