@@ -45,15 +45,15 @@ Some snippets about JavaScript.
   ```
 * Node环境
   ```js
-  	while (tasksAreWaiting()) {
-		queue = getNextQueue()
-    		while (queue.hasTasks())
-    			task = queue.pop()
-    			execute(task)
-    		while (nextTickQueue.hasTasks())
-    			doNextTickTask()
-    		while (promiseQueue.hasTasks())
-    			doPromiseTask()
-    	}
+  while (tasksAreWaiting()) {
+	queue = getNextQueue()
+  	while (queue.hasTasks())
+  		task = queue.pop()
+  		execute(task)
+  	while (nextTickQueue.hasTasks())
+  		doNextTickTask()
+  	while (promiseQueue.hasTasks())
+  		doPromiseTask()
+  }
   ```
 
