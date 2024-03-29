@@ -43,7 +43,7 @@ Some snippets about JavaScript.
   }
   
   ```
-  * Node环境
+* Node环境
     ```js
     	while (tasksAreWaiting()) {
 		queue = getNextQueue()
