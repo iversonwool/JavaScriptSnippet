@@ -23,4 +23,37 @@ Some snippets about JavaScript.
 	- 主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。
 	- 上述过程会不断重复，也就是常说的Event Loop(事件循环)。
 * [Macrotask, Microtask](https://juejin.im/post/5a6309f76fb9a01cab2858b1)
+* 浏览器环境
+
+  ```js
+  while (true) {
+	queue = getNextQueue()
+  	task = queue.pop()
+  	execute(task)
+
+  	while (microtaskQueue.hasTasks())
+  		doMicrotask()
+
+  	if (isRepaintTime()) {
+  		animationTasks = animationQueue.copyTasks()
+  		for (task in animationTasks)
+  			doAnimationTask(task)
+  		 repaint()
+  	}
+  }
+  
+  ```
+  * Node环境
+    ```js
+    	while (tasksAreWaiting()) {
+		queue = getNextQueue()
+    		while (queue.hasTasks())
+    			task = queue.pop()
+    			execute(task)
+    		while (nextTickQueue.hasTasks())
+    			doNextTickTask()
+    		while (promiseQueue.hasTasks())
+    			doPromiseTask()
+    	}
+    ```
 
