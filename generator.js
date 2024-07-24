@@ -3,12 +3,12 @@ function* generatorFunc() {
   yield 'hello'
   console.log("Generator 1");
   yield 'world'
-  // return '!'
+  return '!'
 }
 
 
 const hw = generatorFunc()
-console.log(hw[Symbol.iterator]() === hw) 
+// console.log(hw[Symbol.iterator]() === hw)
 /**
  * 
  * 
@@ -18,3 +18,35 @@ console.log(hw[Symbol.iterator]() === hw)
 // console.log(hw.next());
 // console.log(hw.next());
 // console.log(hw.next());
+
+
+function* gen() {
+  let result = yield '2 + 2 = ?'
+  console.log(result)
+
+  let a = yield result.replace('?', '4')
+  console.log(a)
+}
+
+const g = gen()
+console.log(g.next())
+console.log(g.next('222?'))
+
+/**
+ * 伪随机数生成器
+ * @param seed
+ * @returns {Generator<number, void, *>}
+ */
+function* pseudoRandom(seed) {
+  let previous = seed
+  while (true) {
+    previous = previous * 16807 % 2147483647
+    // previous = next
+    yield previous
+  }
+}
+
+const gtr = pseudoRandom(1)
+console.log(gtr.next().value)
+console.log(gtr.next().value)
+console.log(gtr.next().value)
