@@ -1790,7 +1790,60 @@ const lynkcoTree = [
   }
 ]
 
+/*
 console.log(getParentIds(lynkcoTree, '4e7a4c222617deae4ea0e80128aa6e7eoewqX9yEO5a', {
   children: 'childrenList',
   id: 'uuid'
 }))
+
+ */
+
+
+function Node() {
+  this.name     = ''
+  this.children = []
+
+
+  // this.visited  = false
+}
+
+/**
+ * 深度优先算法
+ * 暴力递归
+ * @param node
+ */
+function dfs(node) {
+  console.log('探寻阶段=>', node.name)
+  node.children.forEach((child) => {
+    dfs(child)
+  })
+  console.log('回溯阶段=>', node.name)
+}
+
+
+/***
+ *  A
+ *  B                 D
+ *  C
+ */
+
+const node = {
+  name: 'A',
+  children: [
+    {
+      name: 'B',
+      children: [
+        {
+          name: 'C',
+          children: []
+        }
+      ]
+    },
+    {
+      name: 'D',
+      children: []
+    }
+  ]
+}
+
+dfs(node)
