@@ -38,13 +38,24 @@ class LinkedList {
       previousNode.next = previousNode.next.next
     }
   }
+
+  display() {
+    let currentNode = this.head
+    let result = ''
+    while (currentNode) {
+      result += `${currentNode.element}->`
+      currentNode = currentNode.next
+    }
+    result += `null`
+    console.log(result)
+  }
 }
 
 const linkedList = new LinkedList()
 
 linkedList.insert('apple', 'head')
-console.log(linkedList)
+linkedList.display()
 linkedList.insert('strawberry', 'apple')
-console.log(linkedList)
+linkedList.display()
 linkedList.remove('apple')
-console.log(linkedList)
+linkedList.display()
